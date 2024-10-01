@@ -4,7 +4,7 @@ import { Form } from 'react-bootstrap';
 import { debounce } from 'lodash';
 import { useSelector } from 'react-redux';
 import { selectToken } from '../store/authSlice';
-
+import { baseUrl } from '../utils/constants'; 
 const Panvalidation = () => {
   const  token  = useSelector(selectToken);
   const [pan, setPan] = useState('');
@@ -20,7 +20,7 @@ const Panvalidation = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:3000/api/panvalidation', { pan }, {
+      const response = await axios.post(`${baseUrl}/api/panvalidation`, { pan }, {
         headers: {
           Authorization: `Bearer ${token}`
         }
